@@ -1,5 +1,7 @@
 # React + TypeScript + Tailwind + Vite
 
+doveloping ...
+
 React Ts Weather App run:
 
 `cpm i`
