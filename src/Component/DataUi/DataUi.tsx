@@ -1,4 +1,5 @@
 import React from "react";
+import './DataUi.css';
 
 export class DataUi extends React.Component {
   render(): React.ReactNode {
@@ -149,7 +150,13 @@ export class DataUi extends React.Component {
             </div>
           </div>
           <div className="flex mt-8">
-            <div className=" rounded-3xl h-27rem w-60% mr-9 ml-3"></div>
+            <div className="flex flex-col rounded-3xl bg-Secoundry h-27rem w-60% mr-9 ml-3">
+              <div className="font-bold text-2xl mt-8 ml-8 "><p>Percentage of Cold</p></div>
+              <div className="w-100% h-100% flex justify-center items-center">
+              <span className="loader flex justify-center items-center font-bold text-4xl">50%</span>
+              <span className="loader2 flex justify-center items-center font-bold text-4xl">75%</span>
+              </div>
+            </div>
             <div className=" bg-cover bg-[url('./src/image/image3.jpg')] rounded-3xl w-33% h-27rem ">
               <p className="mt-14 ml-12">tomorrow</p>
               <p className="font-bold text-3xl mt-3 ml-12">alam Barzah</p>
