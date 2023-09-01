@@ -1,0 +1,9 @@
+.Shape {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 216, 129, 0.6292892156862745) 51%,
+    rgba(255, 219, 176, 1) 85%
+  );
+}
