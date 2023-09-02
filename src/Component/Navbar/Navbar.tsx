@@ -1,7 +1,10 @@
 import React from "react";
 
-export class Navbar extends React.Component {
-  render():React.ReactNode {
+
+
+export class Navbar extends React.Component{
+  render(): React.ReactNode {
+    
     return (
       <>
         <div className="flex flex-col">

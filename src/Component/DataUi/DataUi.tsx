@@ -1,8 +1,35 @@
-import React from "react";
-import './DataUi.css';
+import React, { MouseEventHandler } from "react";
+import "./DataUi.css";
 
-export class DataUi extends React.Component {
+type State ={
+  InputCountryParameterValue: string;
+  city: string;
+};
+
+
+export class DataUi extends React.Component<{} , State > {
+  public constructor(props: {}) {
+    super(props);
+    this.state = { city: "", InputCountryParameterValue: "" };  
+  }
+ 
+    public setCountry(event: any) {
+      this.setState(() => ({
+        InputCountryParameterValue: event!.target.value,
+      }));
+      
+      
+    }
+    public FecthWeather() {
+      this.setState(() => ({
+        city:this.state.InputCountryParameterValue
+      }));
+     
+  }
   render(): React.ReactNode {
+    { this.state.city!=''? fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&appid=d65f0d7075082896db400ce8b80110fc`)
+    .then((res) => res.json())
+    .then((data) => console.log(data)):""}
     return (
       <>
         <div className="w-100% h-100vh">
@@ -27,8 +54,11 @@ export class DataUi extends React.Component {
                 className="p-2 outline-none bg-Secoundry"
                 type="search"
                 placeholder=" Search City..."
+                onChange={() => this.setCountry(event)}
               />
-              <div className="p-2 bg-Secoundry">
+              <div
+                className="p-2 bg-Secoundry"
+                onClick={()=>this.FecthWeather() ! as MouseEventHandler}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -94,23 +124,23 @@ export class DataUi extends React.Component {
                 <div className="flex justify-center mt-10">
                   <div className="m-3 flex justify-center w-28 h-28 items-center rounded-lg bg-black">
                     <div>
-                    <p className="text-white text-center">Preesure</p>
-                    <p className="font-bold text-white text-center">800mb</p>
-                     </div>
+                      <p className="text-white text-center">Preesure</p>
+                      <p className="font-bold text-white text-center">800mb</p>
+                    </div>
                   </div>
                   <div className="m-3 flex justify-center w-28 h-28 items-center rounded-lg bg-lime-300">
-                  <div>
-                    <p className=" text-center">Visibility</p>
-                    <p className="font-bold  text-center">4.3km</p>
-                     </div>
+                    <div>
+                      <p className=" text-center">Visibility</p>
+                      <p className="font-bold  text-center">4.3km</p>
+                    </div>
                   </div>
                   <div className="m-3 flex justify-center w-28 h-28 items-center rounded-lg bg-yellow-300">
-                  <div>
-                    <p className=" text-center">Humadity</p>
-                    <p className="font-bold  text-center">87%</p>
-                     </div>
+                    <div>
+                      <p className=" text-center">Humadity</p>
+                      <p className="font-bold  text-center">87%</p>
+                    </div>
                   </div>
-              </div>
+                </div>
               </div>
             </div>
             <div className="rounded-3xl w-50% m-2 mr-10 bg-center h-26rem bg-cover bg-[url('./src/image/image2.jpg')] ">
@@ -151,10 +181,16 @@ export class DataUi extends React.Component {
           </div>
           <div className="flex mt-8">
             <div className="flex flex-col rounded-3xl bg-Secoundry h-27rem w-60% mr-9 ml-3">
-              <div className="font-bold text-2xl mt-8 ml-8 "><p>Percentage of Cold</p></div>
+              <div className="font-bold text-2xl mt-8 ml-8 ">
+                <p>Percentage of Cold</p>
+              </div>
               <div className="w-100% h-100% flex justify-center items-center">
-              <span className="loader flex justify-center items-center font-bold text-4xl">50%</span>
-              <span className="loader2 flex justify-center items-center font-bold text-4xl">75%</span>
+                <span className="loader flex justify-center items-center font-bold text-4xl">
+                  50%
+                </span>
+                <span className="loader2 flex justify-center items-center font-bold text-4xl">
+                  75%
+                </span>
               </div>
             </div>
             <div className=" bg-cover bg-[url('./src/image/image3.jpg')] rounded-3xl w-33% h-27rem ">

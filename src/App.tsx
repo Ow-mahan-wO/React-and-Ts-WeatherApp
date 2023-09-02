@@ -1,29 +1,28 @@
 import React from "react";
 import { Navbar } from "./Component/Navbar/Navbar";
-
 import { DataUi } from "./Component/DataUi/DataUi";
-import "./App.css";
-
 import { PredictionWeather } from "./Component/PredictionWeather/PredictionWeather";
 import { WeatherInfoUi } from "./Component/WeatherInfoUi/WeatherInfoUi";
+import "./App.css";
 
-// const URL = `https://api.openweathermap.org/data/2.5/weather?q=iran&appid=d65f0d7075082896db400ce8b80110fc`;
+interface AppState {
+  city: string;
+}
 
-class App extends React.Component {
-  constructor(props: any) {
+class App extends React.Component<{}, AppState> {
+  constructor(props: {}) {
     super(props);
+ 
   }
-  // componentDidMount(): void {
-  //   fetch(URL)
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
-  // }
+
+
+
   render() {
     return (
       <>
         <div className="flex h-100vh w-100%">
           <div className="w-36">
-            <Navbar/>
+            <Navbar />
           </div>
           <div className="w-77rem">
             <DataUi/>
