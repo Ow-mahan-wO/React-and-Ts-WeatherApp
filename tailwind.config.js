@@ -19,7 +19,7 @@ export default {
         '26rem': '26rem',
         '28rem': '28rem',
         '27rem':'27rem',
-        '77rem':'77rem',
+        '47rem':'47rem',
         '30rem': '30rem',
         '60%': '60%',
         '33%': '33%',

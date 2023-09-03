@@ -1,7 +1,13 @@
 import React from "react";
 import "./WeatherInfoUi.css";
 
-export class WeatherInfoUi extends React.Component {
+interface Props { 
+  City: any,
+  Temp:any
+}
+
+export class WeatherInfoUi extends React.Component<Props> {
+
   render(): React.ReactNode {
     return (
       <>
@@ -9,18 +15,18 @@ export class WeatherInfoUi extends React.Component {
           <div className="w-100% flex border-b-2 items-center border-gray-200 justify-between">
             <div className="">
               <p className="font-bold text-3xl">Sun</p>
-              <span className="text-1xl">Banten,Indonesia</span>
+              <span className="text-1xl">{this.props.City?this.props.City:"CityName"}</span>
               <span className="text-orange-400 ml-2">v</span>
             </div>
             <div className="p-6">
-              <p className="font-bold text-orange-400 text-5xl">22°C</p>
+              <p className="font-bold text-orange-400 text-5xl">{this.props.Temp?(Math.floor(this.props.Temp-273))+'°C':"Deg"}</p>
             </div>
           </div>
         </div>
         <div className="w-100% p-10">
           <div className="w-100% overflow-hidden mt-5 border-b-2 h-40 flex justify-center border-orange-400 ">
             <div className="rounded-full border-dotted border-t-4 overflow-hidden border-orange-400 w-80 h-80">
-              <div className="Shape w-44 h-40 "></div>
+              <div className="Shape h-40 " style={{width:`${this.props.Temp?Math.floor(this.props.Temp-273)+10:""}%`}}></div>
             </div>
           </div>
         </div>
@@ -43,7 +49,9 @@ export class WeatherInfoUi extends React.Component {
             </div>
             <div>
               <span className="text-white font-bold text-3xl">20 UVI</span>
-              <span className="bg-lime-300 rounded-lg py-1 px-3 ml-5">Moderate</span>
+              <span className="bg-lime-300 rounded-lg py-1 px-3 ml-5">
+                Moderate
+              </span>
               <p className="text-white font-bold my-3">
                 Moderate Risk of from UV Rase
               </p>

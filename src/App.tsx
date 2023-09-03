@@ -24,13 +24,8 @@ class App extends React.Component<{}, AppState> {
           <div className="w-36">
             <Navbar />
           </div>
-          <div className="w-77rem">
+          <div className="w-100%">
             <DataUi/>
-          </div>
-          <div className="flex flex-col w-30rem h-64rem bg-Secoundry">
-            <WeatherInfoUi />
-            <p className="text-center font-bold text-4xl mt-10">Weather Prediction</p>
-            <PredictionWeather/>
           </div>
         </div>
       </>

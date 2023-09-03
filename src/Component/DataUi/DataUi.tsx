@@ -1,37 +1,90 @@
 import React, { MouseEventHandler } from "react";
+import { PredictionWeather } from "../PredictionWeather/PredictionWeather";
+
+import { WeatherInfoUi } from "../WeatherInfoUi/WeatherInfoUi";
 import "./DataUi.css";
 
-type State ={
+import Swal from 'sweetalert2'
+import 'sweetalert2/src/sweetalert2.scss'
+
+
+type State = {
   InputCountryParameterValue: string;
   city: string;
 };
 
 
-export class DataUi extends React.Component<{} , State > {
+export class DataUi extends React.Component<{}, State> {
+ 
+  public DataTemp: any;
+  public DataCity: any;
+  public DataHumidity: any;
+  public DataTempMin: any;
+  public DataTempMax: any;
+  public DataVisibility: any;
+  public DataWindDeg: any;
+  public WeatherDesctiption: any;
+  public IsFetching: any;
+  
   public constructor(props: {}) {
     super(props);
-    this.state = { city: "", InputCountryParameterValue: "" };  
+    this.state = { city: "", InputCountryParameterValue: "" };
   }
- 
-    public setCountry(event: any) {
-      this.setState(() => ({
-        InputCountryParameterValue: event!.target.value,
-      }));
-      
-      
-    }
-    public FecthWeather() {
-      this.setState(() => ({
-        city:this.state.InputCountryParameterValue
-      }));
-     
+
+  public setCountry(event: any) {
+    this.IsFetching=false
+    this.setState(() => ({
+      InputCountryParameterValue: event!.target.value,
+    })
+    );
+
+  }
+  
+  public FecthWeather() {
+    this.IsFetching=true
+    this.setState(() => ({
+      city: this.state.InputCountryParameterValue,
+    })
+    );
   }
   render(): React.ReactNode {
-    { this.state.city!=''? fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&appid=d65f0d7075082896db400ce8b80110fc`)
-    .then((res) => res.json())
-    .then((data) => console.log(data)):""}
+    {
+      this.IsFetching
+      ? fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&appid=d65f0d7075082896db400ce8b80110fc`
+        )
+        .then((res) => res.json())
+        .then(
+          (data) => (
+            (Swal.fire({
+              title: 'success',
+              text: `Data Fetching SuccessFull`,
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            })),
+                (this.DataTemp = data.main.temp),
+                (this.DataCity = data.name),
+                (this.DataHumidity = data.main.humidity),
+                (this.DataTempMin = data.main.temp_min),
+                (this.DataTempMax = data.main.temp_max),
+                (this.DataVisibility = data.visibility),
+                (this.WeatherDesctiption = data.weather[0].description),
+                (this.DataWindDeg = data.wind.deg)
+                )
+                )
+                .catch(()=>Swal.fire({
+                  title: 'Error!',
+                  text: `Your City Not Found`,
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                  
+        }))
+        : "";
+    }
     return (
       <>
+
+        <div className="flex">
         <div className="w-100% h-100vh">
           <div className="flex justify-between">
             <div className="flex py-4">
@@ -51,14 +104,14 @@ export class DataUi extends React.Component<{} , State > {
             </div>
             <div className="flex items-center mr-7">
               <input
-                className="p-2 outline-none bg-Secoundry"
+                className="p-2 outline-none bg-Secoundry rounded-l-lg"
                 type="search"
                 placeholder=" Search City..."
                 onChange={() => this.setCountry(event)}
               />
               <div
-                className="p-2 bg-Secoundry"
-                onClick={()=>this.FecthWeather() ! as MouseEventHandler}>
+                className="p-2 bg-Secoundry rounded-r-lg"
+                onClick={() => this.FecthWeather()! as MouseEventHandler}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -115,29 +168,29 @@ export class DataUi extends React.Component<{} , State > {
               </div>
               <div>
                 <div className="ml-10">
-                  <span className="font-bold  text-5xl">22°C</span>
+                  <span className="font-bold  text-5xl">{this.DataTemp?Math.floor(this.DataTemp-273)+'°C':"Deg"}</span>
                   <span className="font-bold bg-white p-2 rounded-lg ml-7 ">
-                    11°C
+                  {this.DataTempMin?Math.floor(this.DataTemp-273)+'°C':"min"}
                   </span>
-                  <p className=" text-xl">Partly Cloudy</p>
+                  <p className=" text-xl mt-3">{this.WeatherDesctiption?this.WeatherDesctiption:"Weather description"}</p>
                 </div>
-                <div className="flex justify-center mt-10">
+                <div className="flex justify-center mt-6">
                   <div className="m-3 flex justify-center w-28 h-28 items-center rounded-lg bg-black">
                     <div>
-                      <p className="text-white text-center">Preesure</p>
-                      <p className="font-bold text-white text-center">800mb</p>
+                      <p className="text-white text-center">Weather</p>
+                      <p className="font-bold text-white text-center">{this.WeatherDesctiption?this.WeatherDesctiption:"Weather"}</p>
                     </div>
                   </div>
                   <div className="m-3 flex justify-center w-28 h-28 items-center rounded-lg bg-lime-300">
                     <div>
                       <p className=" text-center">Visibility</p>
-                      <p className="font-bold  text-center">4.3km</p>
+                      <p className="font-bold  text-center">{this.DataVisibility?this.DataVisibility*0.001:"n "}Km</p>
                     </div>
                   </div>
                   <div className="m-3 flex justify-center w-28 h-28 items-center rounded-lg bg-yellow-300">
                     <div>
-                      <p className=" text-center">Humadity</p>
-                      <p className="font-bold  text-center">87%</p>
+                      <p className=" text-center">Humidity</p>
+                      <p className="font-bold  text-center">{this.DataHumidity?this.DataHumidity:"n "}%</p>
                     </div>
                   </div>
                 </div>
@@ -168,36 +221,42 @@ export class DataUi extends React.Component<{} , State > {
                 </div>
               </div>
               <div className="ml-10">
-                <span className="font-bold text-white text-5xl">390</span>
+                <span className="font-bold text-white text-5xl">{this.DataWindDeg?this.DataWindDeg:"Wind  Deg"}</span>
                 <span className="font-bold bg-lime-300 p-2 rounded-lg ml-7 ">
                   AQI
                 </span>
-                <p className="text-white text-xl">West Wind</p>
+                <p className="text-white text-xl mt-3">West Wind</p>
               </div>
-              <div className="bg-gray-200 w-70% h-3 mt-32 ml-20">
-                <div className="bg-orange-400 w-60% h-3"></div>
+              <div className="bg-gray-200 w-70% h-3 mt-28 ml-20">
+                <div className="bg-orange-400 h-3" style={{width:`${this.DataHumidity?this.DataHumidity:30}%`}}></div>
               </div>
             </div>
           </div>
           <div className="flex mt-8">
             <div className="flex flex-col rounded-3xl bg-Secoundry h-27rem w-60% mr-9 ml-3">
               <div className="font-bold text-2xl mt-8 ml-8 ">
-                <p>Percentage of Cold</p>
+                <p>Lowest / Highest Grade (deg)</p>
               </div>
               <div className="w-100% h-100% flex justify-center items-center">
-                <span className="loader flex justify-center items-center font-bold text-4xl">
-                  50%
+                <span className="loader flex justify-center items-center font-bold text-3xl">
+                  {this.DataTempMax?Math.floor(this.DataTempMax-273)+'°C':"Max deg"}
                 </span>
-                <span className="loader2 flex justify-center items-center font-bold text-4xl">
-                  75%
+                <span className="loader2 flex justify-center items-center font-bold text-3xl">
+                  {this.DataTempMin?Math.floor(this.DataTempMin-273)+'°C':"Min deg"}
                 </span>
               </div>
             </div>
             <div className=" bg-cover bg-[url('./src/image/image3.jpg')] rounded-3xl w-33% h-27rem ">
-              <p className="mt-14 ml-12">tomorrow</p>
-              <p className="font-bold text-3xl mt-3 ml-12">alam Barzah</p>
-              <p className="font-bold text-5xl ml-12 mt-48">26°C</p>
+              <p className="mt-14 ml-12">Report City Weather</p>
+              <p className="font-bold text-3xl mt-3 ml-12">{this.DataCity?this.DataCity:"City Name"}</p>
+              <p className="font-bold text-5xl ml-12 mt-48">{this.DataTemp?Math.floor(this.DataTemp-273):"n "}°C</p>
             </div>
+          </div>
+        </div>
+          <div className="bg-Secoundry w-47rem h-64rem">
+            <WeatherInfoUi City={this.DataCity} Temp={this.DataTemp} />
+            <p className="text-center font-bold text-4xl mt-10">Weather Prediction</p>
+            <PredictionWeather MinTemp={this.DataTempMin} MaxTemp={this.DataTempMax} />
           </div>
         </div>
       </>
