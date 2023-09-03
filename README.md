@@ -1,5 +1,7 @@
 # React + TypeScript + Tailwind + Vite
 
+!! this project writed with oop (class components)
+
 doveloping ...
 
 React Ts Weather App run:
