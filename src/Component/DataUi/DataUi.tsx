@@ -83,17 +83,18 @@ export class DataUi extends React.Component<{}, State> {
     }
     return (
       <>
-
-        <div className="flex">
+        <div className="flex flex-col w-100% justify-between lg:flex-row">
+          
+        <div className="p-5 flex md:p-3 w-100% lg:w-80% ">
         <div className="w-100% h-100vh">
           <div className="flex justify-between">
-            <div className="flex py-4">
+            <div className="flex py-4 shrink-0">
               <img
                 className="w-16 h-16"
                 src="../src/image/avatar.jpg"
                 alt="Avatar"
               />
-              <div className="flex flex-col mx-3">
+              <div className=" mx-3 hidden md:flex flex-col">
                 <div>
                   <p>Hello,</p>
                 </div>
@@ -143,10 +144,10 @@ export class DataUi extends React.Component<{}, State> {
               </div>
             </div>
           </div>
-          <div className="flex">
-            <div className="rounded-3xl w-50% m-2 h-26rem bg-center bg-cover bg-[url('./src/image/image1.jpg')] ">
+          <div className="flex flex-col xl:flex-row  ">
+            <div className="rounded-3xl w-100% mt-8 xl:w-50%  h-26rem bg-center bg-cover bg-[url('./src/image/image1.jpg')] ">
               <div className="flex m-10">
-                <div className="flex justify-center items-center bg-white rounded-full w-14 h-14">
+                <div className="flex justify-center   items-center bg-white rounded-full w-14 h-14">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -196,7 +197,7 @@ export class DataUi extends React.Component<{}, State> {
                 </div>
               </div>
             </div>
-            <div className="rounded-3xl w-50% m-2 mr-10 bg-center h-26rem bg-cover bg-[url('./src/image/image2.jpg')] ">
+            <div className="rounded-3xl ml-0 xl:ml-4 w-100% mt-8 xl:w-50% m-2 mr-10   bg-center h-26rem bg-cover bg-[url('./src/image/image2.jpg')] ">
               <div className="flex m-10">
                 <div className="flex justify-center items-center bg-white rounded-full w-14 h-14">
                   <svg
@@ -232,28 +233,29 @@ export class DataUi extends React.Component<{}, State> {
               </div>
             </div>
           </div>
-          <div className="flex mt-8">
-            <div className="flex flex-col rounded-3xl bg-Secoundry h-27rem w-60% mr-9 ml-3">
+          <div className="flex flex-col xl:flex-row mt-8 ">
+            <div className="flex flex-col rounded-3xl w-100% bg-Secoundry h-27rem xl:w-60% mr-9 xl:ml-3">
               <div className="font-bold text-2xl mt-8 ml-8 ">
                 <p>Lowest / Highest Grade (deg)</p>
               </div>
               <div className="w-100% h-100% flex justify-center items-center">
-                <span className="loader flex justify-center items-center font-bold text-3xl">
+                <span className="loader w-52 h-52 xl:w-60 xl:h-60  m-1 flex justify-center items-center font-bold text-3xl">
                   {this.DataTempMax?Math.floor(this.DataTempMax-273)+'°C':"Max deg"}
                 </span>
-                <span className="loader2 flex justify-center items-center font-bold text-3xl">
+                <span className="loader2  w-52 h-52 xl:w-60 xl:h-60 m-3 flex justify-center items-center font-bold text-3xl">
                   {this.DataTempMin?Math.floor(this.DataTempMin-273)+'°C':"Min deg"}
                 </span>
               </div>
             </div>
-            <div className=" bg-cover bg-[url('./src/image/image3.jpg')] rounded-3xl w-33% h-27rem ">
+            <div className=" bg-cover bg-[url('./src/image/image3.jpg')] rounded-3xl hidden xl:flex flex-col w-33% h-27rem ">
               <p className="mt-14 ml-12">Report City Weather</p>
               <p className="font-bold text-3xl mt-3 ml-12">{this.DataCity?this.DataCity:"City Name"}</p>
               <p className="font-bold text-5xl ml-12 mt-48">{this.DataTemp?Math.floor(this.DataTemp-273):"n "}°C</p>
             </div>
           </div>
         </div>
-          <div className="bg-Secoundry w-47rem h-64rem">
+        </div>
+          <div className="bg-Secoundry h-64rem w-100% mt-37rem md:mt-37rem lg:h-93rem lg:w-34rem xl:h-64rem lg:mt-0 p-2 ">
             <WeatherInfoUi City={this.DataCity} Temp={this.DataTemp} />
             <p className="text-center font-bold text-4xl mt-10">Weather Prediction</p>
             <PredictionWeather MinTemp={this.DataTempMin} MaxTemp={this.DataTempMax} />

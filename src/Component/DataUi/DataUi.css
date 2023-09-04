@@ -1,37 +1,30 @@
 .loader {
-    margin: 2rem;
-    width: 250px;
-    height: 250px;
-    border: 2rem solid white;
-    border-radius: 50%;
-    position: relative;
-    box-sizing: border-box;
-  }
-  .loader::before {
-    content: "";
-    position: absolute;
-    box-sizing: border-box;
-    inset:-32px;
-    border-radius: 50%;
-    border:2rem solid #fb923c;
-    clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%);
-  }
-  .loader2 {
-    margin: 2rem;
-    width: 250px;
-    height: 250px;
-    border: 2rem solid white;
-    border-radius: 50%;
-    position: relative;
-    box-sizing: border-box;
-  }
-  .loader2::before {
-    content: "";
-    position: absolute;
-    box-sizing: border-box;
-    inset:-32px;
-    border-radius: 50%;
-    border:2rem solid #fb923c;
-    clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%);
-  }
-  
+  border: 2rem solid white;
+  border-radius: 50%;
+  position: relative;
+  box-sizing: border-box;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  inset: -32px;
+  border-radius: 50%;
+  border: 2rem solid #fb923c;
+  clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+}
+.loader2 {
+  border: 2rem solid white;
+  border-radius: 50%;
+  position: relative;
+  box-sizing: border-box;
+}
+.loader2::before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  inset: -32px;
+  border-radius: 50%;
+  border: 2rem solid #fb923c;
+  clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+}
