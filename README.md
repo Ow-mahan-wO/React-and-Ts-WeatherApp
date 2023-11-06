@@ -2,7 +2,8 @@
 
 !! this project writed with oop (class components)
 
-doveloping ...
+online link project:
+https://react-and-ts-weather-app.vercel.app
 
 React Ts Weather App run:
 
