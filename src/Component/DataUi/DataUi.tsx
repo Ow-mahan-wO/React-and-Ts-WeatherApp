@@ -91,7 +91,7 @@ export class DataUi extends React.Component<{}, State> {
             <div className="flex py-4 shrink-0">
               <img
                 className="w-16 h-16"
-                src="../src/image/avatar.jpg"
+                src="/avatar.jpg"
                 alt="Avatar"
               />
               <div className=" mx-3 hidden md:flex flex-col">
@@ -145,7 +145,7 @@ export class DataUi extends React.Component<{}, State> {
             </div>
           </div>
           <div className="flex flex-col xl:flex-row  ">
-            <div className="rounded-3xl w-100% mt-8 xl:w-50%  h-26rem bg-center bg-cover bg-[url('./src/image/image1.jpg')] ">
+            <div className="rounded-3xl w-100% mt-8 xl:w-50%  h-26rem bg-center bg-cover bg-[url('/image1.jpg')] ">
               <div className="flex m-10">
                 <div className="flex justify-center   items-center bg-white rounded-full w-14 h-14">
                   <svg
@@ -197,7 +197,7 @@ export class DataUi extends React.Component<{}, State> {
                 </div>
               </div>
             </div>
-            <div className="rounded-3xl ml-0 xl:ml-4 w-100% mt-8 xl:w-50% m-2 mr-10   bg-center h-26rem bg-cover bg-[url('./src/image/image2.jpg')] ">
+            <div className="rounded-3xl ml-0 xl:ml-4 w-100% mt-8 xl:w-50% m-2 mr-10   bg-center h-26rem bg-cover bg-[url('/image2.jpg')] ">
               <div className="flex m-10">
                 <div className="flex justify-center items-center bg-white rounded-full w-14 h-14">
                   <svg
@@ -247,7 +247,7 @@ export class DataUi extends React.Component<{}, State> {
                 </span>
               </div>
             </div>
-            <div className=" bg-cover bg-[url('./src/image/image3.jpg')] rounded-3xl hidden xl:flex flex-col w-33% h-27rem ">
+            <div className=" bg-cover bg-[url('/image3.jpg')] rounded-3xl hidden xl:flex flex-col w-33% h-27rem ">
               <p className="mt-14 ml-12">Report City Weather</p>
               <p className="font-bold text-3xl mt-3 ml-12">{this.DataCity?this.DataCity:"City Name"}</p>
               <p className="font-bold text-5xl ml-12 mt-48">{this.DataTemp?Math.floor(this.DataTemp-273):"n "}°C</p>

@@ -9,7 +9,7 @@ export class Navbar extends React.Component{
       <>
         <div className="flex flex-col">
           <div className="py-5 px-6">
-            <img className="w-12 h-12" src="../src/image/logo.jpg" alt="Logo" />
+            <img className="w-12 h-12" src="/logo.jpg" alt="Logo" />
           </div>
           <div className="py-3 px-6">
             <div className="flex justify-center items-center w-12 h-12 bg-orange-400 rounded-xl">
